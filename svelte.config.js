@@ -6,15 +6,17 @@ const dev = "production" === "development";
 /** @type {import(""@sveltejs/kit").Config} */
 const config = {
     kit: {
+        prerender: {
+            default: true
+        },
         adapter: adapter({
             pages: "docs",
             assets: "docs"
         }),
         paths: {
             // change below to your repo name
-            base: dev ? "/portfolio/_app" : "",
-        },
-        // hydrate the <div id="svelte"> element in src/app.html
+            base: dev ? "/portfolio" : "/portfolio",
+        }
     }
 };
 
