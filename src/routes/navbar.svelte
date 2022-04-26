@@ -1,193 +1,144 @@
-<div class="header">
-    <div class="nav-bar-opposition-wrapper">
-      <img src="src/icon.png" alt="Nathan Eads Logo" class="logo">
-      <p class="opposition-text header-text">Nathan Eads</p>
+<script>
+import { page } from "$app/stores";
+  let navHeaders = [
+    // Formatting: 
+    // {name: ['PAGE NAME DISPLAYED ON WEBSITE','FILE NAME WITH NO EXTENSION'], subpages: []}, LEAVE SUBPAGES ARRAY LIKE THIS IF THERE ARE NO SUBPAGES
+    // {name: [...], subpages: [['SUBPAGE NAME DISPLAYED ON SITE','FILE NAME WITH NO EXTENSION']]}, 
+    // All files need to have extension '.svelte'.
+    {name: ['Home','index'], subpages: []},
+    {name: ['Work Experience','workExp'], subpages: [['All Experience','allExp'],['Professional Work','profExp'],['Volunteer Work','volExp'], ['Personal Projects','personalExp']]},
+    {name: ['Articles & Awards', 'articles'], subpages: []},
+    {name: ['Resume', 'resume'], subpages: []},
+  ];
+  
+  let lhsTitle = 'Nathan Eads' // Header on Left Hand Side of Nav-Bar
+</script>
+
+<body class="navbar-block">
+<div class="navbar-wrapper">
+    <div class="lhs">
+      <a class="lhs-a" href="index.svelte">
+
+      <svg class="menu-bars-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+      <img class="navbar-logo" src="/src/images/logos/icon.png" alt="Logo">
+      <p>{lhsTitle}</p>
+      </a>
     </div>
-    <ul class="nav-bar-links-wrapper">
-      <a href="index.html"><li class="nav-bar-item header-text">Home</li></a>
-      <a href="#"><li class="nav-bar-item header-text">Page 1</li></a>
-      <a href="#"><li class="nav-bar-item header-text">Page 2</li></a>
-      <a href="#"><li class="nav-bar-item header-text">Page 3</li></a>
-    </ul>
+  <div class="rhs">
+    {#each navHeaders as page}
+      <li class="page"><a href="{page.name[1]}.svelte">{page.name[0]}</a></li>
+      <div class="dropdown-content--{page}">
+      {#each page.subpages as subpage}
+        <li class="subpage"><a href="{subpage[1]}.svelte">{subpage[0]}</a></li>
+      {/each}
+      </div>
+    {/each}
   </div>
+</div>
+</body>
 
-  <style>
-      .header {
-  width: 80%;
-  padding: 0px 10%;
-  background-color: #232323;
-  display: inline-flex;
-
-  -webkit-user-select: none; /* Make text non-selectable Safari */
-  -moz-user-select: none; /* Make text non-selectable Firefox */
-  -ms-user-select: none; /* Make text non-selectable IE10+/Edge */
-  user-select: none; /* Make text non-selectable Standard */
-}
-
-.header-text {
-  font-size: 21px;
-  color: white;
-  padding: 18px 21px;
-  font-family: "Poppins", sans-serif;
-  font-weight: 500;
-  position: relative;
-}
-
-.nav-bar-item::before {
-  position: absolute;
-    left: -29px;
-    top: 0px;
-    height: 68px;
-    width: 30px;
-    content: "";
-    background-image: url(../src/left.svg);
-    background-size: cover;
-    /* transition: .3s; */
-}
-
-.nav-bar-item::after {
-  position: absolute;
-    right: -30px;
-    top: 0px;
-    height: 68px;
-    width: 30px;
-    content: "";
-    background-image: url(../src/left.svg);
-    transform: rotate(180deg);
-    -webkit-transform: rotate(180deg);
-    -moz-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
-    -o-transform: rotate(180deg);
-    background-size: cover;
-    /* transition: .3s; */
-}
-
-.nav-bar-item:hover:before {
-  background-image: url(../src/left-white.svg);
-  /* transition: .5s; */
-}
-
-.nav-bar-item:hover:after {
-  background-image: url(../src/left-white.svg);
-  transform: rotate(180deg);
-  -webkit-transform: rotate(180deg);
-  -moz-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  -o-transform: rotate(180deg);
-  /* transition: .5s; */
-}
-
-.nav-bar-links-wrapper {
-  width: 70%;
-  display: inline-flex;
-  justify-content: flex-end;
-  padding-left: 0px;
-  float: right;
-}
-
-.nav-bar-opposition-wrapper {
-  width: 30%;
-}
-
-.hamburger {
-  font-family: Material Icons;
-  background-color: transparent;
-  color: white;
-  border: none;
-  font-size: 30px;
-  padding: 9px;
-  vertical-align: middle;
-  display: none;
-}
-
-.hamburger:focus {
-  outline: none;
-}
-
-.logo {
-  height: 30px;
-  padding-bottom: 3px;
-  vertical-align: middle;
-}
-
-.opposition-text {
-  display: inline-flex;
-}
-
-.nav-bar-item {
-  list-style-type: none;
-  justify-content: space-around;
-  flex-shrink: 1;
-  cursor: pointer;
-  width: max-content;
-  margin-right: 30px;
-  background-color: var(--crimson);
-}
-
-.nav-bar-item:hover {
-  background-color: white;
-  color: black;
-}
-
-@media (max-width: 1450px) {
-  .header-text {
-    font-size: 21px;
-    padding: 18px 18px
+<style>
+  :root {
+    --image-height: 2.5em;
+    --image-padding: 11px;
   }
-}
-
-@media (max-width: 1130px) {
-
-}
-
-@media (max-width: 1285px) {
-  .header-text {
-    padding: 18px 9px;
+  p {
+    margin: 0px;
   }
-  .nav-bar-opposition-wrapper {
+  .navbar-block {
+    padding: 0px 10%;
+    margin: auto;
+    background-color: #232323;
+  }
+  .navbar-wrapper {
+    margin: 0px;
+    background-color: #232323;
+    color: white;
+    font-family: sans-serif;
+    font-weight: 400;
+    font-size: 1.35em;
+    display: flex;
+    justify-content: space-between;
+    height: max-content;
+  }
+  .menu-bars-svg {
+    display: none;
+    fill: white;
+    height: var(--image-height);
+    padding: var(--image-padding);
+  }
+  .lhs {
     width: 30%;
+    line-height: calc(var(--image-height) + 2*var(--image-padding));
+    vertical-align: middle;
   }
-  .logo {
-    height: 20px;
+  .lhs-a {
+    display: flex;
   }
-}
-
-@media (max-width: 1130px) {
-  .header-text {
-    font-size: 21px;
+  .navbar-logo {
+    height: var(--image-height);
+    padding: var(--image-padding) calc(2*var(--image-padding));
   }
-}
-
-@media (max-width: 910px) {
-  .nav-bar-opposition-wrapper {
-    display: none;
-    width: 0%;
+  .rhs {
+    display: flex;
+    justify-content: flex-end;
+    width: 70%;
+    flex-wrap: wrap;
+    line-height: calc(var(--image-height) + 2*var(--image-padding));
+    vertical-align: middle;
   }
-  .nav-bar-links-wrapper {
-    width: 100%;
-    justify-content: center;
+  a, li {
+    text-decoration: none;
+    list-style-type: none;
+    color: inherit;
+    margin: 0px;
+    padding: 0px;
   }
-  .header-text {
-    padding: 18px 9px;
-    font-size: 21px;
-  }
-}
-
-@media (max-width: 745px) {
-  .nav-bar-links-wrapper {
-    display: none;
-  }
-  .nav-bar-opposition-wrapper {
-    display: inline-block;
-    width: 100%;
-  }
-  .hamburger {
-    display: inline-block
-  }
-  .header-text {
-    /* font-size: 20px; */
+  .page {
+    padding: 0 1.05em;
     position: relative;
-    top: 4px
   }
+  .page:hover{
+    background-color: white;
+    color: #232323;
+  }
+
+/* https://www.w3schools.com/howto/howto_css_dropdown.asp */
+  
+  @media (max-width: 1200px) {
+    .navbar-wrapper {
+      font-size: 1.1em;
+    }
+  }
+
+  @media (max-width: 950px) {
+    .navbar-wrapper {
+      display: block;
+      padding-top: 15px;
+      font-size: 1.2em;
+    }
+    .lhs, .rhs {
+      width: max-content;
+      margin: auto;
+      
+    }
+  }
+
+@media (max-width:750px) {
+  .navbar-wrapper {
+    padding-bottom: 15px;
+    display: flex;
+  }
+  .lhs {
+    margin: 0%;
+  }
+  .rhs {
+    display: none;
+  }
+  .menu-bars-svg {
+    display: block;
+  }
+
 }
-  </style>
+
+</style>

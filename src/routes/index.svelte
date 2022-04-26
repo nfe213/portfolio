@@ -2,7 +2,12 @@
     import Navbar from './navbar.svelte';
 </script>
 
-<body>
-    
-    <Navbar/>
+<body class="site-wrapper">
+<Navbar/>    
 </body>
+
+<style>
+    .site-wrapper {
+        margin: 0px;
+    }
+</style>
