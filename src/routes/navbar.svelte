@@ -6,7 +6,7 @@ import { page } from "$app/stores";
     // {name: [...], subpages: [['SUBPAGE NAME DISPLAYED ON SITE','FILE NAME WITH NO EXTENSION']]}, 
     // All files need to have extension '.svelte'.
     {id:1, name: ['Home','index'], subpages: []},
-    {id:2, name: ['Work Experience','workExp'], subpages: [['All','allExp'],['Professional','profExp'],['Volunteer','volExp'], ['Personal','personalExp']]},
+    {id:2, name: ['Experience','exp'], subpages: [['All','exp'],['Professional','profExp'],['Volunteer','volExp'], ['Personal','personalExp']]},
     {id:3, name: ['Articles & Awards', 'articles'], subpages: []},
     {id:4, name: ['Resume', 'resume'], subpages: []},
   ];
@@ -53,6 +53,8 @@ function showMenu() {
     console.log(hrefString)
     subpagesA.removeAttribute("href");
     subpagesTemp.style.marginLeft = '1.35em';
+
+    
   }
 
 };
@@ -181,7 +183,7 @@ function showMenu() {
     background-color: white;
     color: #232323;
   }
-  /* .dropdown:hover .dropdown-content {display: block;} */
+  .dropdown:hover .dropdown-content {display: block;}
   .page:hover{
     background-color: white;
     color: #232323;
