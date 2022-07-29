@@ -6,9 +6,9 @@ import { page } from "$app/stores";
     // {name: [...], subpages: [['SUBPAGE NAME DISPLAYED ON SITE','FILE NAME WITH NO EXTENSION']]}, 
     // All files need to have extension '.svelte'.
     {id:1, name: ['Home','index'], subpages: []},
-    {id:2, name: ['Experience','exp'], subpages: [['All','exp'],['Professional','profExp'],['Volunteer','volExp'], ['Personal','personalExp']]},
+    {id:2, name: ['Experience','exp'], subpages: [['All','exp'],['Engineering','profExp'],['Volunteer','volExp'], ['Personal','personalExp']]},
     {id:3, name: ['Articles & Awards', 'articles'], subpages: []},
-    {id:4, name: ['Resume', 'resume'], subpages: []},
+    {id:4, name: ['Resume', 'resume'], subpages: []},  
   ];
   
   let lhsTitle = 'Nathan Eads'; // Header on Left Hand Side of Nav-Bar
@@ -29,18 +29,13 @@ function showMenu() {
   const rhs = document.getElementById('rhs');
   const lhs = document.getElementById('lhs');
 
-  // function showContent(j) {
-  //   console.log('Ran');
-  //   let subpageTemp = document.getElementById('dropdown-content-' + j);
-  //   subpageTemp.style.display = 'block';
-  // };
-
   rhs.style.height = String(window.innerHeight + 'px');
   rhs.style.width = String(window.innerWidth + 'px');
   rhs.style.display = 'block';
   lhs.style.display = 'none';
   
   for (let i = 0; i < navHeaders.length; i++) {
+
     let dropdownTemp = document.getElementById('dropdown-' + (i+1));
     dropdownTemp.style.display = 'block';
     
@@ -54,9 +49,7 @@ function showMenu() {
     subpagesA.removeAttribute("href");
     subpagesTemp.style.marginLeft = '1.35em';
 
-    
-  }
-
+  };
 };
 </script>
 
@@ -123,8 +116,8 @@ function showMenu() {
   .menu-bars-svg {
     display: none;
     fill: white;
-    height: var(--image-height);
-    padding: var(--image-padding) calc(2*var(--image-padding));
+    height: calc(0.85*var(--image-height));
+    padding: calc(0.85*var(--image-padding)) calc(2*var(--image-padding)*0.85);
   }
   .hamburger-menu:hover .menu-bars-svg {
     fill: #232323;
@@ -206,6 +199,9 @@ function showMenu() {
       margin: auto;
       
     }
+    .lhs-a p {
+      display: none;
+    }
   }
 
 @media (max-width:750px) {
@@ -225,13 +221,22 @@ function showMenu() {
   }
   .hamburger-menu {
     display: block;
-    
+  }
+  .navbar-logo {
+    height: calc(var(--image-height)*0.85);
+    padding: calc(var(--image-padding)*0.85) calc(2*var(--image-padding)*0.85);
   }
 
 }
 @media (max-width:400px) {
   .lhs-a p {
     display: none;
+  }
+  .navbar-logo {
+    padding: calc(var(--image-padding)*0.5) calc(2*var(--image-padding)*0.5);
+  }
+  .menu-bars-svg {
+    padding: calc(0.5*var(--image-padding)) calc(2*var(--image-padding)*0.5);
   }
 }
 </style>
